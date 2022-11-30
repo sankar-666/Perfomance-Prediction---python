@@ -1,0 +1,40 @@
+{% include 'student_header.html' %}
+<center>
+	<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center" style="height: 1000px">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+<form method="post">
+<h1>VIEW ASSIGNMENTS</h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>SLNO</th>
+ 			<th>COURSE</th>
+ 			<th>TITLE</th>
+ 			<th>DESCRIPTION</th>
+ 			<th>MAXIMUM MARK</th>
+ 			<th>ASSIGMENT DATE</th>
+ 			<th>FINAL DATE SUBMISSION</th>
+ 			
+ 		</tr>
+ 		{% for i in data['b'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['course_title']}}</td>
+ 			<td>{{i['title']}}</td>
+ 			<td>{{i['decription']}}</td>
+ 			<td>{{i['maximum_mark']}}</td>
+ 			<td>{{i['assignment_date']}}</td>
+ 			<td>{{i['fial_date_submission']}}</td>
+ 			<td><a class=" btn btn-warning" href="student_add_submission?id={{i['assignment_id']}}">add submission</a></td>
+ 			
+ 		</tr>
+ 		{%endfor%}
+ 	</table>
+ </form>
+ 	</center>
+ 	</div>
+  </section><!-- End Hero -->
+ 	{% include 'footer.html' %}	

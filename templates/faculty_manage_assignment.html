@@ -1,0 +1,122 @@
+{% include 'faculty_header.html' %}
+<center>
+<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+
+<form method="post">
+	{% if data['upp'] %}
+<h1><b>UPDATE ASSIGNMENTS</b></h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+  			<th>COURSE</th>
+ 			<td>
+ 				<select name="cs" class="form-control">
+ 				
+ 					{% for row in data['cs'] %}
+ 					<option value="{{row['course_id']}}">{{row['course_title']}}</option>
+ 					{% endfor %}
+ 				</select>
+ 			</td>
+ 		</tr>
+         <tr>
+ 			<th>TITLE</th>
+ 			<td><input type="text" name="tt" required class="form-control" value="{{data['upp'][0]['title']}}" placeholder="Title"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>DESCRIPTION</th>
+ 			<td><input type="text" name="dc" required class="form-control" value="{{data['upp'][0]['decription']}}" placeholder="description"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>MAXIMUM MARK</th>
+ 			<td><input type="text" name="mm" required class="form-control" value="{{data['upp'][0]['maximum_mark']}}" placeholder="maximum mark"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>ASSIGMENT DATE</th>
+ 			<td><input type="date" name="ad" required class="form-control" value="{{data['upp'][0]['assignment_date']}}"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>FINAL DATE SUBMISSION</th>
+ 			<td><input type="date" name="fd" required class="form-control" value="{{data['upp'][0]['fial_date_submission']}}"></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="center" colspan="2"><input type="submit" name="update" class="btn btn-warning" value="update"></td>
+ 		</tr>
+ 	</table>
+ 	{% else %}
+
+<h1><b>ASSIGNMENTS</b></h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+  			<th>COURSE</th>
+ 			<td>
+ 				<select name="cs" class="form-control">
+ 				
+ 					{% for row in data['cs'] %}
+ 					<option value="{{row['course_id']}}">{{row['course_title']}}</option>
+ 					{% endfor %}
+ 				</select>
+ 			</td>
+ 		</tr>
+         <tr>
+ 			<th>TITLE</th>
+ 			<td><input type="text" required name="tt" class="form-control" placeholder="Title"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>DESCRIPTION</th>
+ 			<td><input type="text" required name="dc" class="form-control" placeholder="description"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>MAXIMUM MARK</th>
+ 			<td><input type="text" required name="mm" class="form-control" placeholder="maximum mark"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>ASSIGMENT DATE</th>
+ 			<td><input type="date" required class="form-control" name="ad"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>FINAL DATE SUBMISSION</th>
+ 			<td><input type="date" required class="form-control" name="fd"></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="center" colspan="2"><input type="submit" class="btn btn-warning" name="submit"></td>
+ 		</tr>
+ 	</table>
+    {% endif %}
+    </div>
+  </section><!-- End Hero -->
+
+ <h1 style="color: black">VIEW ASSIGNMENTS</h1>
+ 	<table class="table" style="width: 500px;color: black">
+ 	    <tr>
+ 			<th>SLNO</th>
+ 			<th>COURSE</th>
+ 			<th>TITLE</th>
+ 			<th>DESCRIPTION</th>
+ 			<th>MAXIMUM MARK</th>
+ 			<th>ASSIGMENT DATE</th>
+ 			<th>FINAL DATE SUBMISSION</th>
+ 		</tr>	
+ 		
+ 		{% for i in data['b'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['course_title']}}</td>
+ 			<td>{{i['title']}}</td>
+ 			<td>{{i['decription']}}</td>
+ 			<td>{{i['maximum_mark']}}</td>
+ 			<td>{{i['assignment_date']}}</td>
+ 			<td>{{i['fial_date_submission']}}</td>
+ 			<td><a class="btn btn-warning" href="?action=delete&id={{i['assignment_id']}}">Delete</a></td>
+ 			<td><a class="btn btn-warning" href="?action=update&id={{i['assignment_id']}}">update</a></td>
+ 			<td><a class="btn btn-warning" href="faculty_view_submission?id={{i['assignment_id']}}">view submission</a></td>
+ 		</tr>
+ 		{%endfor%}
+ 	</table>
+
+</form>
+</center>
+{% include 'footer.html' %}

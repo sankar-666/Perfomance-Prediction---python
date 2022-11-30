@@ -1,0 +1,235 @@
+{% include 'faculty_header.html' %}
+<center>
+<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center" style="height: 1000px">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+
+<form method="post">
+	{% if data['upp'] %}
+	
+<h1><b>UPDATE STUDENTS</b></h1>
+ 	<table class="table" style="width: 500px;color: white">
+         <tr>
+ 			<th>FIRST NAME</th>
+ 			<td><input type="text" required name="fn" class="form-control" value="{{data['upp'][0]['first_name']}}" placeholder="first name"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>LAST NAME</th>
+ 			<td><input type="text" required name="ln" class="form-control" value="{{data['upp'][0]['last_name']}}" placeholder="last name"></td>
+ 		</tr>
+
+ 		<tr>
+  			<th>COURSE</th>
+ 			<td>
+ 				<select name="cs" class="form-control">
+ 					
+ 					{% for row in data['cs'] %}
+ 					<option value="{{row['course_id']}}">{{row['course_title']}}</option>
+ 					{% endfor %}
+ 				</select>
+ 			</td>
+ 		</tr>
+ 		<tr>
+ 			<th>PHONE NUMBER</th>
+ 			<td><input type="number" name="phn"  pattern="[6-9]{1}[0-9]{9}"  class="form-control" value="{{data['upp'][0]['phone']}}" placeholder="phone number"></td>
+ 		</tr>
+		
+ 		<tr>
+ 			<th>EMAIL</th>
+ 			<td><input type="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" value="{{data['upp'][0]['email']}}" placeholder="email"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>GENDER</th>
+ 			<td><input type="radio" name="gn"  value="MALE">MALE</td>
+ 			<td><input type="radio" name="gn"  value="FEMALE">FEMALE</td>
+ 		</tr>
+
+        <tr>
+ 			<th>DOB</th>
+ 			<td><input type="date" name="dt" required class="form-control" value="{{data['upp'][0]['dob']}}" placeholder="DOB"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>HOUSE NAME</th>
+ 			<td><input type="text" name="hn" required class="form-control" value="{{data['upp'][0]['house_name']}}" placeholder="house name"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>PLACE</th>
+ 			<td><input type="text" name="plc" required  class="form-control" value="{{data['upp'][0]['place']}}" placeholder="place"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>PINCODE</th>
+ 			<td><input type="text" name="pn" required class="form-control" value="{{data['upp'][0]['pincode']}}" placeholder="pincode"></td>
+ 		</tr>
+ 		
+ 		<tr>
+ 			<td align="center" colspan="2"><input type="submit" name="update" class="btn btn-warning" value="update"></td>
+ 		</tr>
+</table>
+
+{% else %}
+
+
+
+
+<h1 style="margin-left: -2em"><b>STUDENTS</b></h1>
+ 	<table class="table" style="width: 500px; color: white">
+         <tr>
+ 			<th>FIRST NAME</th>
+ 			<td><input type="text" required name="fn" class="form-control" placeholder="first name"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>LAST NAME</th>
+ 			<td><input type="text" required name="ln" class="form-control" placeholder="last name"></td>
+ 		</tr>
+
+ 		<tr>
+  			<th>COURSE</th>
+ 			<td>
+ 				<select name="cs" class="form-control">
+ 					
+ 					{% for row in data['cs'] %}
+ 					<option value="{{row['course_id']}}">{{row['course_title']}}</option>
+ 					{% endfor %}
+ 				</select>
+ 			</td>
+ 		</tr>
+ 		<tr>
+ 			<th>PHONE NUMBER</th>
+ 			<td><input type="text" minlength="1" pattern="[6-9]{1}[0-9]{9}" required maxlength="10" name="phn" class="form-control" placeholder="phone number"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>EMAIL</th>
+ 			<td><input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required class="form-control" placeholder="email"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>GENDER</th>
+ 			<td><input type="radio" name="gn"  value="MALE">MALE</td>
+ 			<td><input type="radio" name="gn"  value="FEMALE">FEMALE</td>
+ 		</tr>
+
+        <tr>
+ 			<th>DOB</th>
+ 			<td><input type="date" required name="dt" class="form-control" placeholder="DOB"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>HOUSE NAME</th>
+ 			<td><input type="text" required name="hn" class="form-control" placeholder="house name"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>PLACE</th>
+ 			<td><input type="text" required name="plc" class="form-control" placeholder="place"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>PINCODE</th>
+ 			<td><input type="text" required minlength="1" required maxlength="6" name="pn" class="form-control" placeholder="pincode"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>USER NAME</th>
+ 			<td><input type="text" required name="un" class="form-control" placeholder="user name"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>PASSWORD</th>
+ 			<td><input type="password" required	 name="psw" class="form-control" placeholder="password"></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="center" colspan="2"><input type="submit" name="submit" class=" btn btn-warning"></td>
+ 		</tr>
+</table>
+
+{% endif %}
+</div>
+  </section><!-- End Hero -->
+
+
+<h1 style="color: black">VIEW STUDENTS</h1>
+ 	<table class="table" style="width: 500px;color: black">
+ 		<tr>
+ 			<th>SLNO</th>
+ 			<th>FIRST NAME</th>
+ 			<th>LAST NAME</th>
+ 			<th>COURSE</th>
+ 			<th>PHONE</th>
+ 			<th>EMAIL</th>
+ 			<th>GENDER</th>
+ 			<th>DOB</th>
+ 			<th>HOUSE NAME</th>
+ 			<th>PLACE</th>
+ 			<th>PINCODE</th>
+ 		</tr>
+ 		{% for i in data['b'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['first_name']}}</td>
+ 			<td>{{i['last_name']}}</td>
+ 			<td>{{i['course_title']}}</td>
+ 			<td>{{i['phone']}}</td>
+ 			<td>{{i['email']}}</td>
+ 			<td>{{i['gender']}}</td>
+ 			<td>{{i['dob']}}</td>
+ 			<td>{{i['house_name']}}</td>
+ 			<td>{{i['place']}}</td>
+ 			<td>{{i['pincode']}}</td>
+ 			<td><a class="btn btn-warning" href="?action=delete&id={{i['login_id']}}">Delete</a></td>
+ 			<td><a class="btn btn-warning" href="?action=update&id={{i['login_id']}}">Update</a></td>
+ 		</tr>
+ 		{%endfor%}
+ 		</table>
+
+</center>
+</form>
+<script src="
+  https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	  </script>
+  <script>
+	  $(function() {
+		//   $("input[name='fname']").on('input', function(e) {
+		// 	  $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+  
+		//   });
+		//   $("input[name='lname']").on('input', function(e) {
+		// 	  $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+  
+		//   });
+		  // $("input[name='dob']").on('input', function(e) {
+		  //     $(this).val($(this).val().replace(/[^0-9/]/g, ''));
+  
+		  // });
+		  
+		  $("input[name='phn']").on('input', function(e) {
+			  $(this).val($(this).val().replace(/[^0-9]/g, ''));
+			  
+		  });
+		  $("input[name='pn']").on('input', function(e) {
+			  $(this).val($(this).val().replace(/[^0-6]/g, ''));
+			  
+		  });
+		  $("input[name='email']").on('input', function(e) {
+				var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+				  if(!re) {
+					  $('#eerror').show();
+				  } else {
+					  $('#eerror').hide();
+				  }
+  
+		  });
+		  $("input[name='address']").on('input', function(e) {
+			  $(this).val($(this).val().replace(/[^A-Za-z0-9()/. ]/g, ''));
+  
+		  });
+		  $("input[name='place']").on('input', function(e) {
+			  $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+  
+		  });
+			  
+		  $("input[name='pwd']").on('input', function(e) {
+			  $(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+			  
+		  });
+	  });
+  
+  
+  </script>
+{% include 'footer.html' %}

@@ -1,0 +1,68 @@
+{% include 'admin_header.html' %}
+
+   <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+     
+<center>
+	<form method="post">
+		{% if data['up'] %}
+<h1><b>UPDATE COURSES</b></h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>COURSE TITLE</th>
+ 			<td><input type="text" required value="{{data['up'][0]['course_title']}}" class="form-control" name="ct" ></td>
+ 		</tr>
+ 		<tr>
+ 			<th>COURSE DESCRIPTION</th>
+ 			<td><input type="text" required value="{{data['up'][0]['course_description']}}" class="form-control" name="cd"></td>
+ 			 		</tr><br>
+ 		<tr>
+ 			<td align="center" colspan="2"><input type="submit" name="update" class="btn btn-warning" value="update"></td>
+ 		</tr>
+ 	</table>
+ 	{% else %}
+
+
+<h1><b>COURSES</b></h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>COURSE TITLE</th>
+ 			<td><input type="text" required name="ct" class="form-control" placeholder="course title"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>COURSE DESCRIPTION</th>
+ 			<td><textarea placeholder="course decription" required name="cd" class="form-control"></textarea></td>
+ 			 		</tr><br>
+ 		<tr>
+ 			<td align="center" colspan="2"><input type="submit" class="btn btn-warning" name="submit"></td>
+ 		</tr>
+ 	</table>
+ 	{% endif %}
+    </div>
+  </section><!-- End Hero -->
+<center>
+ 	<h1 style="color: black">VIEW COURSES</h1>
+ 	<table class="table" style="width: 500px;color: black">
+ 		<tr>
+ 			<th>SLNO</th>
+ 			<th>COURSE</th>
+ 			<th>DESCRIPTION</th>
+ 		</tr>
+ 		{% for i in data['b'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['course_title']}}</td>
+ 			<td>{{i['course_description']}}</td>
+ 			<td><a class="btn btn-warning" href="?action=delete&id={{i['course_id']}}">Delete</a></td>
+ 				<td><a class="btn btn-warning"href="?action=update&id={{i['course_id']}}">Update</a></td>
+ 		</tr>
+ 		{%endfor%}
+ 	</table>
+ 	
+ </form>
+ </center>
+{% include 'footer.html' %}

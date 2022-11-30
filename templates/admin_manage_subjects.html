@@ -1,0 +1,94 @@
+{% include 'admin_header.html' %}
+<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+
+<center>
+	<form method="post">
+     {% if data['upp'] %}
+   <h1><b>UPDATE SUBJECTS</b></h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>COURSE</th>
+ 			<td>
+ 				<select name="cs" class="form-control">
+ 			
+ 					{% for row in data['cs'] %}
+ 					<option value="{{row['course_id']}}">{{row['course_title']}}</option>
+ 					{% endfor %}
+ 				</select>
+ 			</td>
+ 		</tr>
+ 		<tr>
+ 			<th>SUBJECT NAME</th>
+ 			<td><input type="text" required name="sn" class="form-control" value="{{data['upp'][0]['subject_name']}}"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>SUBJECT DESCRIPTION</th>
+ 			<td><input type="text" required name="sd" class="form-control" value="{{data['upp'][0]['subject_description']}}"></td>
+ 		</tr><br>
+ 		<tr>
+ 			<td align="center" colspan="2"><input type="submit" name="update" class="btn btn-warning" value="update"></td>
+ 		</tr>
+ 	</table>
+
+     {% else %}
+
+
+ 	<h1><b>SUBJECTS</b></h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>COURSE</th>
+ 			<td>
+ 				<select name="cs" class="form-control">
+ 					
+ 					{% for row in data['cs'] %}
+ 					<option value="{{row['course_id']}}">{{row['course_title']}}</option>
+ 					{% endfor %}
+ 				</select>
+ 			</td>
+ 		</tr>
+ 		<tr>
+ 			<th>SUBJECT NAME</th>
+ 			<td><input type="text" required name="sn" class="form-control" placeholder="subject name"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>SUBJECT DESCRIPTION</th>
+ 			<td><textarea name="sd" required class="form-control" placeholder="subject description"></textarea></td>
+ 		</tr><br>
+ 		<tr>
+ 			<td align="center" colspan="2"><input type="submit" class="btn btn-warning" name="submit"></td>
+ 		</tr>
+ 	</table>
+ 	
+ 	{% endif %}
+ 	</div>
+  </section><!-- End Hero -->
+  <center>
+ 	<h1 style="color: black">VIEW SUBJECTS</h1>
+ 	<table class="table" style="width: 500px;color: black">
+ 		<tr>
+ 			<th>SLNO</th>
+ 			<th>COURSES</th>
+ 			<th>SUBJECTS</th>
+ 			<th>DESCRIPTION</th>
+ 		</tr>
+ 		{% for i in data['s'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['course_title']}}</td>
+ 			<td>{{i['subject_name']}}</td>
+ 			<td>{{i['subject_description']}}</td>
+ 			<td><a class="btn btn-warning" href="?action=delete&id={{i['subject_id']}}">Delete</a></td>
+ 			<td><a class="btn btn-warning" href="?action=update&id={{i['subject_id']}}">Update</a></td>
+ 		</tr>
+ 		{%endfor%}
+ 		
+ 	</table>
+ 	
+ </form>
+ </center>
+{% include 'footer.html' %}

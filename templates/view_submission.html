@@ -1,0 +1,39 @@
+{% include 'admin_header.html' %}
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+
+<form method="post">
+	<center>
+		<h1>Students Performance</h1>
+		<table border="1" style="width: 700px;color: white;border: none;" class="table">
+			
+			<tr>
+				<th>Student Name</th>
+				<th>Subject Name</th>
+				
+				
+				
+				
+			</tr>
+			<tbody>
+				{% for row in data['viewsubmission'] %}
+				<tr>
+					<td>{{row['sname']}}</td>
+					<td>{{row['subject_name']}}</td>
+					
+					<td><a href="viewdetailed?ids={{data['ids']}}&id={{row['student_id']}}" class="btn btn-primary">View Answered Detailed</a></td>
+
+					
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</center>
+</form>
+</div>
+</div>
+</section>
+{% include 'footer.html' %}

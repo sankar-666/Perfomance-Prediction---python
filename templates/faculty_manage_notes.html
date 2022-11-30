@@ -1,0 +1,103 @@
+{% include 'faculty_header.html' %}
+<center>
+	<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+<form method="post">
+	{% if data['upp'] %}
+<h1><b>UPDATE NOTES</b></h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+  			<th>COURSE</th>
+ 			<td>
+ 				<select name="cs" class="form-control">
+ 	
+ 					{% for row in data['cs'] %}
+ 					<option value="{{row['course_id']}}">{{row['course_title']}}</option>
+ 					{% endfor %}
+ 				</select>
+ 			</td>
+ 		</tr>
+         <tr>
+ 			<th>TITLE</th>
+ 			<td><input type="text" required name="t" class="form-control" value="{{data['upp'][0]['title']}}" placeholder="Title"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>DESCRIPTION</th>
+ 			<td><input type="text" required name="d" class="form-control" value="{{data['upp'][0]['description']}}" placeholder="description"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>NOTE DATE</th>
+ 			<td><input type="date" required class="form-control" value="{{data['upp'][0]['note_date']}}" name="nd"></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="center" required colspan="2"><input type="submit" class="btn btn-warning" name="update" value="update"></td>
+ 		</tr>
+ 	</table>
+
+{% else %}
+
+<h1><b>NOTES</b></h1>
+ 	<table  class="table" style="width: 500px;color: white">
+ 		<tr>
+  			<th>COURSE</th>
+ 			<td>
+ 				<select name="cs" class="form-control">
+ 				
+ 					{% for row in data['cs'] %}
+ 					<option value="{{row['course_id']}}">{{row['course_title']}}</option>
+ 					{% endfor %}
+ 				</select>
+ 			</td>
+ 		</tr>
+         <tr>
+ 			<th>TITLE</th>
+ 			<td><input type="text" required name="t" class="form-control" placeholder="Title"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>DESCRIPTION</th>
+ 			<td><input type="text" required name="d" class="form-control" placeholder="description"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>NOTE DATE</th>
+ 			<td><input type="date" required class="form-control" name="nd"></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="center" required colspan="2"><input type="submit" class="btn btn-warning"  name="submit"></td>
+ 		</tr>
+ 	</table>
+ 	{% endif %}
+ 	 </div>
+  </section><!-- End Hero -->
+
+<h1 style="color: black">VIEW NOTES</h1>
+ 	<table class="table" style="width: 500px;color: black">
+ 		<tr>
+ 			<th>SLNO</th>
+ 			<th>COURSE</th>
+ 			<th>TITLE</th>
+ 			<th>DESCRIPTION</th>
+ 			<th>NOTE DATE</th>
+ 			
+ 		</tr>
+ 		{% for i in data['b'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['course_title']}}</td>
+ 			<td>{{i['title']}}</td>
+ 			<td>{{i['description']}}</td>
+ 			<td>{{i['note_date']}}</td>
+ 			<td><a class="btn btn-warning" href="?action=delete&id={{i['note_id']}}">Delete</a></td>
+ 			<td><a class="btn btn-warning" href="?action=update&id={{i['note_id']}}">Update</a></td>
+ 			<td><a class="btn btn-warning" href="faculty_view_doubts?id={{i['note_id']}}">view doubts</a></td>
+ 		</tr>
+ 		{%endfor%}
+ 	</table>
+
+
+</form>
+</center>
+{% include 'footer.html' %}

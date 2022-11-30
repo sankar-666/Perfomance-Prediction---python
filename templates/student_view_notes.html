@@ -1,0 +1,34 @@
+{% include 'student_header.html' %}
+<center>
+	<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center" style="height: 1000px">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+<h1>VIEW NOTES</h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>SLNO</th>
+ 			<th>COURSE</th>
+ 			<th>TITLE</th>
+ 			<th>DESCRIPTION</th>
+ 			<th>NOTE DATE</th>
+ 			
+ 		</tr>
+ 		{% for i in data['s'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['course_title']}}</td>
+ 			<td>{{i['title']}}</td>
+ 			<td>{{i['description']}}</td>
+ 			<td>{{i['note_date']}}</td>
+ 			<td><a class=" btn btn-warning" href="student_send_doubts?note_id={{i['note_id']}}">send doubts</a></td>
+ 			
+ 		</tr>
+ 		{%endfor%}
+ 	</table>
+ </center>
+ </div>
+  </section><!-- End Hero -->
+  {% include 'footer.html' %}	

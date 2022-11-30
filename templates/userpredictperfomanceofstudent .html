@@ -1,0 +1,36 @@
+{% include 'student_header.html' %}
+<section id="hero" class="d-flex align-items-center justify-content-center" style="height: 1000px">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+
+<h2>Student selection Knowledge Level</h2>
+<form action="student_result" method="post">
+    <table class="table" style="color: white;">
+        {% for row in data['areas'] %}
+        <tr>
+            <td>
+                {{row['knowledge_area_name']}}
+            </td>
+            <td>
+                <div class="form-group">
+                    <input pattern="[0-9]" required type="text" class="form-control" min="1" max="{{data['count'][0]['counts']}}" placeholder="Enter value between 1 and {{data['count'][0]['counts']}}" name="knowledege_{{row['knowledge_area_id']}}">
+                </div>
+                
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2">
+                <div class="form-group">
+                    <input required type="submit" name="predict" value="Predict" class="btn btn-warning">
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+</div>
+</div>
+</section>
+{% include 'footer.html' %}

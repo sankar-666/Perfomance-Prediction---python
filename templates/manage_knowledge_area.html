@@ -1,0 +1,76 @@
+{% include 'admin_header.html' %}
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+<form method="post">
+	<center>
+		<h1>Knowledge Area</h1>
+		{% if data['updatedata'] %}
+		<table border="1" class="table" style="width: 700px;color:white ;border: none;">
+					<tr>
+				<th>Knowledge Area Name</th>
+				<td><input type="text" required name="kname" class="form-control" required="" value="{{data['updatedata'][0]['knowledge_area_name']}}"></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><textarea rows="4" required cols="50" name="des" class="form-control" required=""  >{{data['updatedata'][0]['description']}}</textarea></td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td colspan="2" align="center"><input type="submit" class="btn btn-success" name="update" value="Update"></td>
+			</tr>
+		</table>
+		{% else %}
+		<table border="1" class="table" style="width: 700px;color:white ;border: none;">
+			<tr>
+				<th>Knowledge Area Name</th>
+				<td><input type="text" required name="kname" class="form-control" required=""></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><textarea rows="4" required cols="50" name="des" class="form-control" required=""></textarea></td>
+				
+			</tr>
+			<tr>
+				
+				<td colspan="2" align="center"><input type="submit" class="btn btn-warning"  name="submit" value="submit"></td>
+			</tr>
+		</table>
+
+		{% endif %}
+	</div>
+	</div>
+</section>
+		<br><br>
+		<center>
+		<table border="1" style="width: 700px" class="table">
+			<tr>
+				<th>Knowledge Area Name</th>
+				<th>Description</th>
+				
+				
+			</tr>
+			<tbody>
+				{% for row in data['viewknowledges'] %}
+				<tr>
+					<td>{{row['knowledge_area_name']}}</td>
+					<td><textarea rows="4" required cols="50">{{row['description']}}</textarea></td>
+					
+					<td>
+						<a href="?action=update&kid={{row['knowledge_area_id']}}"class="btn btn-primary">Update</a>
+						<a style="margin-top:10px;" href="?action=delete&kid={{row['knowledge_area_id']}}"class="btn btn-primary">Delete</a>
+					</td>
+					
+				</tr>
+				{% endfor %}
+			</tbody>
+			
+		</table>
+	</center>
+	
+</form>
+{% include 'footer.html' %}

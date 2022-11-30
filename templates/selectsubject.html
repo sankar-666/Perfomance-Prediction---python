@@ -1,0 +1,38 @@
+{% include 'student_header.html' %}
+<section id="hero" class="d-flex align-items-center justify-content-center" style="height: 1000px">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+<form method="post">
+	<center>
+		<h1>Exercise</h1>
+		<table border="1" style="width: 700px;border: none;color: white;" class="table">
+			<tr>
+				<th>Subject Name</th>
+				
+				
+			<tbody>
+				{% for row in data['viewsubject'] %}
+				<tr>
+					<td>{{row['subject_name']}}</td>
+
+				
+					<td><a href="startexercise?ids={{ row['subject_id'] }}&id2={{row['assignmentt_date']}}" class="btn btn-danger">APPEAR EXERCISE</a></td>
+					
+					
+					</tr>
+	
+				
+				{% endfor %}
+			</tbody>
+			
+				
+			
+		</table>
+	</center>
+</form>
+</div>
+</div>
+</section>
+{% include 'footer.html' %}

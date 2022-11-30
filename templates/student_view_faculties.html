@@ -1,0 +1,38 @@
+{% include 'student_header.html' %}
+<center>
+	<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center" style="height: 1000px">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+<h1>VIEW FACULTIES</h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>SLNO</th>
+ 			<th>SUBJECTS</th>
+ 			<th>FIRST NAME</th>
+ 			<th>LAST NAME</th>
+ 			<th>PHONE</th>
+ 			<th>EMAIL</th>
+ 			<th>QUALIFICATION</th>
+ 		</tr>
+ 		{% for i in data['s'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['subject_name']}}</td>
+ 			<td>{{i['first_name']}}</td>
+ 			<td>{{i['last_name']}}</td>
+ 			<td>{{i['phone']}}</td>
+ 			<td>{{i['email']}}</td>
+ 			<td>{{i['qualification']}}</td>
+ 			
+ 		</tr>
+ 		{%endfor%}
+
+ 		
+ 	</table>
+ 	</center>
+ 	</div>
+  </section><!-- End Hero -->
+ 	{% include 'footer.html' %}	

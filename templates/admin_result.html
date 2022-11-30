@@ -1,0 +1,46 @@
+{% include 'admin_header.html' %}
+
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+    <h2>Predicted students</h2>
+    <table class="table" style="color: white;width: 1000px;position: relative;right: 150px;">
+        <tr>
+            <th>Perfomance chance</th>
+            <th>Fname</th>
+            <th>Lname</th>
+            <th>Gender</th>
+            <th>Dob</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{row['percent']}}</td>
+            <td>{{row['first_name']}}</td>
+            <td>{{row['last_name']}}</td>
+            <td>{{row['gender']}}</td>
+            <td>{{row['dob']}}</td>
+            <td>
+                {{row['house_name']}}<br>
+                {{row['place']}}<br>
+                {{row['pincode']}}<br>
+            </td>
+            <td>{{row['phone']}}</td>
+            <td>{{row['email']}}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+        </div>
+    </section>
+   
+
+{% include 'footer.html' %}
+
+

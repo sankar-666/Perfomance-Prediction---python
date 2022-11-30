@@ -1,0 +1,46 @@
+{% include 'admin_header.html' %}
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+<form method="post">
+	<center>
+		<h2>View Names</h2>
+		<input type="text" name="student"  readonly value="Student : {{data['viewsubmission'][0]['sname']}}"><br>
+		<input type="text" name="student" readonly value="Subject : {{data['viewsubmission'][0]['subject_name']}}"><br><br>
+		<h2>View Marks Obtained</h2>
+		<input type="text" name="student" readonly value="Questions Attended : {{data['viewsubmission'][0]['tot']}}"><br>
+		<input type="text" name="student" readonly value="Right Answer : {{data['sub']}}"><br>
+		<input type="text" name="student" readonly value="Wrong Attended : {{data['cor']}}"><br>
+	
+		<br>
+		<br>
+		<br>
+		<br>
+		<h2>View Knowledge Perfomance based on the Exercise Answered</h2>
+	<table align="center" border="1" class="table" style="width:500px;color: white;border: none;">
+		<tr>
+			<td>Knowledge Area</td>
+			<td>Perfomance</td>
+		</tr>
+		
+		{% for row in data['knowledge'] %}
+			<tr>
+				<td><input type="text" readonly name="area{{loop.index}}" value="{{row['knowledge_area_name']}}"></td>
+				<td><input type="text" readonly name="mark{{loop.index}}" value="{{row['mark']}}">
+					<input type="text" hidden name="areaid{{loop.index}}" value="{{row['knowledge_area_id']}}"></td>
+			</tr>
+		{% endfor %}
+		
+		
+	</table>
+
+	<input type="submit" class="btn btn-warning" name="upload" value="Upload Data">
+	</center>
+</form>
+</div>
+</div>
+</section>
+
+{% include 'footer.html' %}

@@ -1,0 +1,124 @@
+{% include 'student_header.html' %}
+<section id="hero" class="d-flex align-items-center justify-content-center" style="height: 1000px">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+<form method="post" style="margin-top:-350px;">
+<table align="center" class="table" style="width: 400px;"  >
+    <tr>
+        <td style="width:250px"><strong style="font-size: 20px;color: white;">Subject Name   :</strong></td>
+        <td><strong style="font-size: 20px;color:red">{{ data['subjectname'][0]['subject_name'] }}</strong></td>
+    </tr>
+</table>
+<br>
+<br>
+<table align="right" >
+    <tr>
+        <td style="width:250px"><strong style="font-size: 20px;color: white;">Student Details   :</strong></td>
+        <td><strong style="font-size: 20px;color:red">{{ data['sdetails'][0]['names'] }}<br>{{ data['sdetails'][0]['email'] }}</strong></td>
+    </tr>
+</table>
+<br>
+<br>
+
+<input type="hidden"  name="dict" value="{{ data['a'] }}">
+<input type="hidden"  name="dictposition" value="{{ data['position'] }}">
+{% if data['check'][0]['button']=="None" %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<table align="center">
+    <tr>
+        <td><input type="submit" style="position: relative;bottom: 100px;" name="startexam" class="btn btn-success" value="Start Exam"></td>
+    </tr>
+</table>
+{% else %}
+ 
+
+<br>
+<br>
+
+<input type="text" hidden name="sid" value="{{ data['questions'][0]['exercise_id'] }}">
+<input type="text" hidden name="qstnid" value="{{ data['qstnid'] }}">
+<input type="text" hidden name="numofval" value="{{ data['numofval'] }}">
+<input type="text" hidden name="numofvalinc" value="{{ data['numofvalinc'] }}">
+
+{% set list1 = data['a'].split(',') %}
+
+
+{% set list2 = data['ansdetails'].split(',') %}
+<table style="position: relative;right: 50%;">
+<tr>
+<td>
+<div style='overflow-x:hidden;overflow-y:scroll;width:300px;height:200px'>
+    <div style='width:300px;height:500px'>
+            {% for rows in list1 %}
+                {% if rows in list2 %}
+                    <input type="submit" style="background-color:green "  name="selectquestion{{loop.index}}" value="{{ loop.index }}">
+
+                {% else %}
+                    <input type="submit" style="background-color:red " name="selectquestion{{loop.index}}" value="{{ loop.index }}">
+                {% endif %}
+            {% endfor %}
+
+    </div>
+    </div>
+
+</td>
+<td>
+
+<table align="center" style="width:600px;color: aliceblue;" border="5">
+    <tr>
+        <td align="center" colspan="2">Exercise No : {{ data['qstnid'] }}</td>
+    </tr>
+    <tr>
+        <td style="width:300px" align="center" colspan="2"><strong style="font-size: 20px;">{{ data['questions'][0]['exercise_question'] }}</strong></td>
+    </tr>
+    <tr>
+        <td colspan="2"><br><br></td>
+    </tr>
+    <tr>
+        <td align="center" width="200px" style="border:1px solid white;">Options</td>
+        <td style="border: 1px solid white;">
+        <table>
+        {% for row in data['answerdetails'] %}
+            <tr>
+            {% if data['answered'][0]['option_id']== row['answered_option_id'] %}
+            <td ><input type="radio" name="selanswer" checked value="{{ row['option_id'] }}"  class="form-check-input" >{{ row['option_description'] }}</td>
+            {% else %}
+                <td><input type="radio" name="selanswer" horizontal value="{{ row['option_id'] }}"  class="form-check-input" >{{ row['option_description'] }}</td>
+            {% endif %}
+            </tr>
+            
+        {% endfor %}
+        </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"  align="center"><input type="submit" style="width: 100px;margin-bottom: 5px;margin-top: 5px;" class="btn btn-primary" name="next" value="next"></td>
+        <!-- <td  align="center"><input type="submit" name="previous" value="previous"></td> -->
+    </tr>
+    <tr>
+        <td  align="center" colspan="2"><input type="submit" style="width: 100px;" class="btn btn-danger" name="finish" value="Finish"></td>
+    </tr>
+</table>
+</td>
+</tr>
+</table>
+
+{% endif %}
+<input type="hidden"  value="{{ data['flag'] }}" name="flag">
+<input type="hidden"  value="{{ data['pflag'] }}" name="pflag">
+
+</form>
+        </div>
+        </div>
+    </section>
+
+{% include 'footer.html' %}

@@ -1,0 +1,186 @@
+{% include 'admin_header.html' %}
+<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+
+<center>
+	<form method="post">
+     {% if data['upp'] %}
+     <h1><b>UPDATE FACULTIES</b></h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>Subjects</th>
+ 			<td>
+ 				<select name="ss" class="form-control">
+ 					<option>--select--</option>
+ 					{% for row in data['ss'] %}
+ 					<option value="{{row['subject_id']}}">{{row['subject_name']}}</option>
+ 					{% endfor %}
+ 				</select>
+ 			</td>
+ 		</tr>
+ 		<tr>
+ 			<th>FIRST NAME</th>
+ 			<td><input type="text" name="fn" value="{{data['upp'][0]['first_name']}}" class="form-control" placeholder="first name"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>LAST NAME</th>
+ 			<td><input type="text" name="ln" value="{{data['upp'][0]['last_name']}}" class="form-control" placeholder="last name"></td>
+ 		</tr>
+ 		<tr>
+ 			<tr>
+ 			<th>PHONE</th>
+ 			<td><input type="number" pattern="[7-9]{1}[0-9]{9}" name="phn" value="{{data['upp'][0]['phone']}}" class="form-control" placeholder="phone number"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>EMAIL</th>
+ 			<td><input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="{{data['upp'][0]['email']}}" class="form-control" placeholder="email"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>QUALIFICATION</th>
+ 			<td><input type="text" name="ql" value="{{data['upp'][0]['qualification']}}" class="form-control" placeholder="qualification"></td>
+ 		</tr>
+ 		<tr>
+        <tr>
+ 			<td align="center" colspan="2"><input type="submit" class="btn btn-warning" name="update"></td>
+ 		</tr>
+ 	</table>
+
+ 	 {% else %}
+
+
+ 	<h1><b>FACULTIES</b></h1>
+ 	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>Subjects</th>
+ 			<td>
+ 				<select name="ss" class="form-control">
+ 				
+ 					{% for row in data['ss'] %}
+ 					<option value="{{row['subject_id']}}">{{row['subject_name']}}</option>
+ 					{% endfor %}
+ 				</select>
+ 			</td>
+ 		</tr>
+ 		<tr>
+ 			<th>FIRST NAME</th>
+ 			<td><input type="text" name="fn" id="fname" required class="form-control" placeholder="first name"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>LAST NAME</th>
+ 			<td><input type="text" name="ln" id="lname" required class="form-control" placeholder="last name"></td>
+ 		</tr>
+ 		<tr>
+ 			<tr>
+ 			<th>PHONE</th>
+ 			<td><input type="text" minlength="1" maxlength="10" pattern="[7-9]{1}[0-9]{9}" ma required id="phone" name="phn" class="form-control" placeholder="phone number"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>EMAIL</th>
+ 			<td><input type="email" name="email" id="email" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" placeholder="email"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>QUALIFICATION</th>
+ 			<td><input type="text" name="ql" id="qual" required class="form-control" placeholder="qualification"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>USER NAME</th>
+ 			<td><input type="text" name="uname" required id="uname" class="form-control" placeholder="user name"></td>
+ 		</tr>
+ 		<tr>
+ 			<th>PASSWORD</th>
+ 			<td><input type="password" name="psswd" required id="pass" class="form-control" placeholder="password"></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="center" colspan="2"><input type="submit"  class="btn btn-warning" name="submit"></td>
+ 		</tr>
+ 	</table>
+ 	{% endif %}
+ 	</div>
+  </section><!-- End Hero -->
+  <script src="
+  https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	  </script>
+  <script>
+	  $(function() {
+		//   $("input[name='fname']").on('input', function(e) {
+		// 	  $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+  
+		//   });
+		//   $("input[name='lname']").on('input', function(e) {
+		// 	  $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+  
+		//   });
+		  // $("input[name='dob']").on('input', function(e) {
+		  //     $(this).val($(this).val().replace(/[^0-9/]/g, ''));
+  
+		  // });
+		  
+		  $("input[name='phn']").on('input', function(e) {
+			  $(this).val($(this).val().replace(/[^0-9]/g, ''));
+			  
+		  });
+		//   $("input[name='pincode']").on('input', function(e) {
+		// 	  $(this).val($(this).val().replace(/[^0-9]/g, ''));
+			  
+		//   });
+		  $("input[name='email']").on('input', function(e) {
+				var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+				  if(!re) {
+					  $('#eerror').show();
+				  } else {
+					  $('#eerror').hide();
+				  }
+  
+		  });
+		//   $("input[name='address']").on('input', function(e) {
+		// 	  $(this).val($(this).val().replace(/[^A-Za-z0-9()/. ]/g, ''));
+  
+		//   });
+		//   $("input[name='place']").on('input', function(e) {
+		// 	  $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+  
+		//   });
+			  
+		//   $("input[name='pwd']").on('input', function(e) {
+		// 	  $(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+			  
+		//   });
+	  });
+  
+  
+  </script>
+<center>
+ 	<h1 style="color: black">VIEW FACULTIES</h1>
+ 	<table class="table" style="width: 500px;color: black">
+ 		<tr>
+ 			<th>SLNO</th>
+ 			<th>SUBJECTS</th>
+ 			<th>FIRST NAME</th>
+ 			<th>LAST NAME</th>
+ 			<th>PHONE</th>
+ 			<th>EMAIL</th>
+ 			<th>QUALIFICATION</th>
+ 		</tr>
+ 		{% for i in data['e'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['subject_name']}}</td>
+ 			<td>{{i['first_name']}}</td>
+ 			<td>{{i['last_name']}}</td>
+ 			<td>{{i['phone']}}</td>
+ 			<td>{{i['email']}}</td>
+ 			<td>{{i['qualification']}}</td>
+ 			<td><a class="btn btn-warning" href="?action=delete&id={{i['login_id']}}">Delete</a></td>
+ 			<td><a class="btn btn-warning" href="?action=update&id={{i['login_id']}}">Update</a></td>
+ 		</tr>
+ 		{%endfor%}
+ 		
+ 	</table>
+ 	
+ </form>
+ </center>
+{% include 'footer.html' %}

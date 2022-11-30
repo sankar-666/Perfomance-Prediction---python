@@ -1,0 +1,47 @@
+{% include 'student_header.html' %}
+<center>
+	<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center" style="height: 1000px">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+<form method="post">
+	<table class="table" style="width: 500px;color: white">
+		<tr>
+ 			<th>DOUBT DESCRIPTION</th>
+ 			<td><input type="text" name="dd" class="form-control" placeholder="doubt description"></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="center" colspan="2"><input type="submit" name="submit" class=" btn btn-warning"></td>
+ 		</tr>
+	</table>
+
+
+	<h1 style=" color: white" >VIEW REPLY</h1>
+	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>SLNO</th>
+ 			<th>NOTE TITLE</th>
+ 			<th>DOUBT DESCRIPTION</th>
+ 			<th>REPLY</th>
+ 			<th>DOUBT DATE</th>
+ 		</tr>
+ 		{% for i in data['s'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['title']}}</td>
+ 			<td>{{i['doubt_description']}}</td>
+ 			<td>{{i['reply']}}</td>
+ 			<td>{{i['doubt_date']}}</td>
+	</tr>
+	{% endfor %}
+</table>
+</form>
+</div>
+  </section><!-- End Hero -->
+
+	
+</center>
+<br>
+ {% include 'footer.html' %}	

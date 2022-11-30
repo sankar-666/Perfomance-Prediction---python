@@ -1,0 +1,32 @@
+{% include 'faculty_header.html' %}
+<center>
+	<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center" style="height: 1000px">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+	<form method="post">
+<h1>VIEW SUBMISSION</h1>
+	<table class="table" style="width: 500px;color: white">
+ 		<tr>
+ 			<th>SLNO</th>
+ 			<th>NAME</th>
+ 			<th>FILE PATH</th>
+ 			<th>SUBMISSION DATE</th>
+ 		</tr>
+ 	{% for i in data['s'] %}
+ 		<tr>
+ 			<td>{{loop.index}}</td>
+ 			<td>{{i['name']}}</td>
+ 			<td><a  href="{{i['file_path']}}"><img src="{{i['file_path']}}" height="100" width="100"></a></td>
+ 			<td>{{i['submission_date']}}</td>
+ 			<td><a class=" btn btn-warning" href="faculty_award_marks?id={{i['submission_id']}}">award marks</a></td>
+ 		</tr>
+ 		{%endfor%}
+ 	</table>
+ </form>
+</center>
+</div>
+  </section><!-- End Hero -->
+ {% include 'footer.html' %}
